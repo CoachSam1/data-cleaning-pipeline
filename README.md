@@ -142,7 +142,7 @@ python main.py
 
 The cleaned and validated dataset will be saved in:  
 
-data/processed/cleaned_sales_final.csv  
+cleaned_sales_final.csv  
 
 ---
 
@@ -176,5 +176,6 @@ This pipeline addresses these challenges by standardizing data, removing invalid
 
 ## Author  
 
-Developed by a data engineer focused on building reliable, scalable, and production-ready data solutions.
+**Maliki Habib Samuel**  
+Data Engineer specializing in building reliable, scalable, and production-ready data pipelines that deliver high-quality, trusted datasets for analytics and decision-making.
 ---
