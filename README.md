@@ -1,55 +1,77 @@
 # Data Cleaning Pipeline (Python + Pandas)
 
 ## Overview
-This project implements a structured data cleaning pipeline that transforms raw sales data into a clean, consistent, and analysis-ready dataset.
 
-The pipeline focuses on data reliability, validation, and enforcing correct business logic, which are critical in real-world data engineering workflows.
+This project implements a structured data cleaning pipeline that transforms raw, inconsistent sales data into a clean, validated, and analysis-ready dataset.
 
----
-
-## Key Highlights
-
-- Built a modular data cleaning pipeline using Python and Pandas
-- Handled real-world data quality issues (missing values, duplicates, corrupted data)
-- Implemented validation checks to ensure data correctness
-- Designed for reproducibility and scalability
+The pipeline is designed using real-world data engineering practices with a focus on data quality, validation, and reproducibility.
 
 ---
 
-## Dataset
-The dataset contains:
+## Problem Statement
 
-- Customer information (name, email, phone)
-- Product and region
-- Quantity, unit price, discount
-- Order date and status
+Raw business data is often incomplete, inconsistent, and unreliable.  
+Without proper cleaning, it leads to incorrect analysis, poor decision-making, and operational inefficiencies.
 
----
-
-## Data Issues Identified
-The raw dataset contained:
-
-- Duplicate records
-- Inconsistent column naming (case and spacing)
-- Corrupted numeric values (e.g. "$1,200", "10pcs")
-- Missing values in critical fields
-- Inconsistent categorical values (status, region)
-- Invalid date formats
+This project addresses these challenges by building a robust data cleaning pipeline.
 
 ---
 
 ## Solution
 
-The pipeline performs the following steps:
+A modular data pipeline was developed using Python and Pandas to:
 
-- Standardizes column names (lowercase, trimmed)
-- Removes duplicate records
-- Cleans numeric fields using regex
-- Converts values to correct data types
-- Handles missing values with clear rules
-- Recalculates total revenue (quantity × unit price)
-- Standardizes text fields (names, emails, regions)
-- Validates and converts date fields
+- Clean and standardize raw data
+- Handle missing and inconsistent values
+- Remove duplicates
+- Validate key business metrics
+- Output a clean dataset ready for analysis
+
+---
+
+## Dataset
+
+The dataset contains:
+
+- Customer information (name, email, phone)
+- Product and regional data
+- Sales transactions (quantity, price, discount)
+
+---
+
+## Key Features
+
+- Modular and reusable pipeline design
+- Handles real-world data quality issues
+- Data validation and integrity checks
+- Clean and structured output dataset
+- Designed for scalability and reproducibility
+
+---
+
+## Pipeline Architecture
+
+```mermaid
+flowchart LR
+    A[Raw Sales Data] --> B[Data Cleaning]
+    B --> C[Validation Checks]
+    C --> D[Clean Dataset]
+    D --> E[Analytics / Reporting / ML]
+```
+
+---
+
+## Workflow
+
+The pipeline follows a structured process:
+
+1. Load raw dataset  
+2. Clean column names  
+3. Handle missing values  
+4. Remove duplicates  
+5. Standardize categorical values  
+6. Validate data integrity  
+7. Export clean dataset  
 
 ---
 
@@ -57,10 +79,11 @@ The pipeline performs the following steps:
 
 To ensure data reliability:
 
-- No missing values in critical columns
-- Revenue calculations verified (error = 0)
-- Consistent categorical values
-- Clean and structured dataset
+- No missing values in critical fields  
+- Duplicate records removed  
+- Revenue calculations verified  
+- Consistent categorical values  
+- Clean and structured dataset output  
 
 ---
 
@@ -68,11 +91,90 @@ To ensure data reliability:
 
 The final dataset is:
 
-- Clean
-- Consistent
-- Validated
-- Ready for analysis, reporting, or machine learning
+- Clean  
+- Consistent  
+- Validated  
+- Ready for analytics, reporting, or machine learning  
 
 ---
 
 ## Project Structure
+
+```
+data-cleaning-pipeline/
+│
+├── data/
+│   ├── raw/
+│   │   └── messy_sales_data.csv
+│   ├── processed/
+│   │   └── cleaned_sales_final.csv
+│
+├── main.py
+├── README.md
+└── requirements.txt
+```
+
+This structure ensures:
+
+- Separation of raw and processed data  
+- Maintainable and scalable design  
+- Clear data flow across the pipeline  
+
+---
+
+## How to Run
+
+### 1. Clone the Repository
+
+git clone https://github.com/your-username/data-cleaning-pipeline.git  
+
+cd data-cleaning-pipeline  
+
+### 2. Install Dependencies
+
+pip install pandas numpy  
+
+### 3. Run the Pipeline
+
+python main.py  
+
+### 4. Output
+
+The cleaned dataset will be saved in:
+
+data/processed/cleaned_sales_final.csv  
+
+---
+
+## Business Impact
+
+This project demonstrates the ability to convert raw data into high-quality, business-ready datasets.
+
+### Key Value Delivered:
+
+- Improved data quality and consistency  
+- Reliable and validated datasets  
+- Reduced manual data cleaning effort  
+- Structured pipeline for scalability  
+- Ready-to-use data for business intelligence and analytics  
+
+### Real-World Relevance:
+
+Poor data quality leads to incorrect decisions and financial risk.  
+This pipeline ensures that business insights are based on accurate and trustworthy data.
+
+---
+
+## Technologies Used
+
+- Python  
+- Pandas  
+- NumPy  
+
+---
+
+## Author
+
+Developed by a data professional focused on building reliable, scalable, and production-ready data solutions.
+
+---
