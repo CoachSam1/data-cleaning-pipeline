@@ -1,7 +1,6 @@
-# ==========================================
 # Professional Data Cleaning Pipeline
-# ==========================================
 
+```python
 import pandas as pd
 import argparse
 import logging
@@ -16,11 +15,15 @@ def load_data(path):
 def clean_columns(df):
     """Standardize column names."""
     df.columns = df.columns.str.strip().str.lower()
+    logging.info("✅ Columns cleaned")
     return df
 
 def remove_duplicates(df):
     """Drop duplicate rows."""
-    return df.drop_duplicates()
+    before = len(df)
+    df = df.drop_duplicates()
+    logging.info(f"✅ Removed {before - len(df)} duplicates")
+    return df
 
 def clean_numeric(series):
     """Remove non-numeric characters and convert to float."""
@@ -31,6 +34,7 @@ def handle_missing(df):
     if "quantity" in df: df["quantity"] = df["quantity"].fillna(1)
     if "discount" in df: df["discount"] = df["discount"].fillna(0)
     if "unit_price" in df: df = df.dropna(subset=["unit_price"])
+    logging.info("✅ Missing values handled")
     return df
 
 def fix_total(df):
@@ -38,6 +42,7 @@ def fix_total(df):
     if {"quantity", "unit_price"} <= set(df.columns):
         df["total"] = df["quantity"] * df["unit_price"]
         df = df[(df["total"] > 0) & (df["quantity"] > 0)]
+        logging.info("✅ Total fixed")
     return df
 
 def clean_text(df):
@@ -50,6 +55,7 @@ def clean_text(df):
         status_map = {"completed":"Completed","shipped":"Shipped","pending":"Pending","cancelled":"Cancelled"}
         df["status"] = df["status"].astype(str).str.strip().str.lower().map(status_map)
         df = df.dropna(subset=["status"])
+    logging.info("✅ Text cleaned")
     return df
 
 def clean_dates(df):
@@ -57,13 +63,16 @@ def clean_dates(df):
     if "order date" in df:
         df["order date"] = pd.to_datetime(df["order date"], errors="coerce")
         df = df.dropna(subset=["order date"])
+        logging.info("✅ Dates cleaned")
     return df
 
 def polish(df):
     """Final polish: fill text fields, reset index."""
     if "customer name" in df: df["customer name"] = df["customer name"].fillna("Unknown")
     if "phone number" in df: df["phone number"] = df["phone number"].fillna("Not Provided")
-    return df.reset_index(drop=True)
+    df = df.reset_index(drop=True)
+    logging.info("✅ Final polish done")
+    return df
 
 def validate(df):
     """Basic validation checks."""
@@ -79,7 +88,7 @@ def save(df, path):
     """Save cleaned data to CSV."""
     os.makedirs(os.path.dirname(path), exist_ok=True)
     df.to_csv(path, index=False, encoding="utf-8-sig")
-    logging.info(f"Saved cleaned file: {path}")
+    logging.info(f"✅ File saved: {path}")
 
 def run_pipeline(input_file, output_file):
     df = load_data(input_file)
