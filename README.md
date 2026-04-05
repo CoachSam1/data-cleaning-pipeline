@@ -122,50 +122,51 @@ This structure ensures:
 
 ---
 
-## How to Run
+## How to Run  
 
-### 1. Clone the Repository
+### 1. Clone the Repository  
 
-git clone https://github.com/your-username/data-cleaning-pipeline.git  
+git clone https://github.com/CoachSam1/data-cleaning-pipeline  
 
 cd data-cleaning-pipeline  
 
-### 2. Install Dependencies
+### 2. Install Dependencies  
 
 pip install pandas numpy  
 
-### 3. Run the Pipeline
+### 3. Run the Pipeline  
 
 python main.py  
 
-### 4. Output
+### 4. Output  
 
-The cleaned dataset will be saved in:
+The cleaned and validated dataset will be saved in:  
 
 data/processed/cleaned_sales_final.csv  
 
 ---
 
-## Business Impact
+## Business Impact  
 
-This project demonstrates the ability to convert raw data into high-quality, business-ready datasets.
+This project demonstrates the ability to transform raw and inconsistent data into a high-quality, analytics-ready dataset using a structured data cleaning pipeline.  
 
-### Key Value Delivered:
+### Key Value Delivered:  
 
-- Improved data quality and consistency  
-- Reliable and validated datasets  
-- Reduced manual data cleaning effort  
-- Structured pipeline for scalability  
-- Ready-to-use data for business intelligence and analytics  
+- Improved data quality and consistency across records  
+- Reliable and validated datasets for accurate analysis  
+- Reduced manual data cleaning effort through automation  
+- Structured pipeline designed for scalability and reuse  
+- Clean data ready for business intelligence and analytics  
 
-### Real-World Relevance:
+### Real-World Relevance:  
 
-Poor data quality leads to incorrect decisions and financial risk.  
-This pipeline ensures that business insights are based on accurate and trustworthy data.
+Poor data quality can lead to incorrect insights, operational inefficiencies, and financial risk.  
+
+This pipeline addresses these challenges by standardizing data, removing invalid records, and ensuring that business metrics are accurate and trustworthy.  
 
 ---
 
-## Technologies Used
+## Technologies Used  
 
 - Python  
 - Pandas  
@@ -173,8 +174,7 @@ This pipeline ensures that business insights are based on accurate and trustwort
 
 ---
 
-## Author
+## Author  
 
-Developed by a data professional focused on building reliable, scalable, and production-ready data solutions.
-
+Developed by a data engineer focused on building reliable, scalable, and production-ready data solutions.
 ---
