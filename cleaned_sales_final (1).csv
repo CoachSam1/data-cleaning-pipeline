@@ -1,0 +1,22 @@
+﻿order_id,customer name,email,phone number,order date,product,quantity,unit_price,total,status,region,discount,notes
+1001,John Smith,john.smith@email.com,555-1234,2024-01-15,Laptop,2.0,999.99,1999.98,Completed,NORTH,0.1,VIP customer
+1003,Bob Johnson,bob@email.com,5559012,2024-01-25,Keyboard,1.0,75.5,75.5,Completed,EAST,0.0,
+1004,Alice Brown,alice.brown@email,555-3456,2024-02-01,Monitor,3.0,350.0,1050.0,Pending,WEST,0.15,bulk order
+1006,Nan,mark@email.com,555-2345,2024-02-10,Mouse,5.0,25.0,125.0,Cancelled,EAST,0.0,returned
+1007,Sarah Davis,sarah.davis@email.com,Not Provided,2024-02-14,Keyboard,2.0,75.5,151.0,Completed,SOUTH,0.0,
+1009,Emily Clark,emily@email.com,5554321,2024-03-01,Webcam,3.0,89.99,269.96999999999997,Completed,NORTH,0.0,
+1011,Nancy White,nancy@email.com,(555) 9999,2024-03-10,Mouse,10.0,25.0,250.0,Shipped,SOUTH,0.0,wholesale
+1012,James Harris,jharris@email.com,555-1111,2024-03-15,Keyboard,1.0,75.5,75.5,Completed,WEST,0.0,
+1013,Patricia Thompson,pthompson@email,555-2222,2024-03-20,Monitor,2.0,350.0,700.0,Completed,EAST,0.1,
+1014,Robert Garcia,rgarcia@email.com,+1-555-3333,2024-03-25,Webcam,1.0,89.99,89.99,Cancelled,NORTH,0.0,damaged
+1015,Linda Martinez,linda@email.com,5554444,2024-04-01,Laptop,2.0,999.99,1999.98,Completed,SOUTH,0.1,
+1017,Barbara Clark,bclark@email.com,555-6666,2024-04-10,Keyboard,4.0,75.5,302.0,Shipped,EAST,0.0,
+1019,Elizabeth Lewis,elewis@email.com,555-8888,2024-04-20,Webcam,2.0,89.99,179.98,Completed,SOUTH,0.0,
+1020,Richard Walker,rwalker@email.com,555-9999,2024-04-25,Laptop,1.0,999.99,999.99,Completed,WEST,0.1,
+1022,Joseph Allen,joe@email.com,555-1212,2024-05-01,Keyboard,2.0,75.5,151.0,Pending,SOUTH,0.0,
+1023,Jessica Young,jyoung@email.com,555-3434,2024-05-05,Monitor,1.0,350.0,350.0,Completed,WEST,0.0,
+1024,Thomas Hernandez,thomas@email,555-5656,2024-05-10,Webcam,3.0,89.99,269.96999999999997,Completed,NORTH,0.1,
+1026,Charles Wright,cwright@email.com,(555) 9090,2024-05-20,Mouse,4.0,25.0,100.0,Completed,EAST,0.05,
+1027,Margaret Lopez,mlopez@email.com,5551122,2024-05-25,Keyboard,1.0,75.5,75.5,Cancelled,WEST,0.0,damaged in transit
+1028,Christopher Hill,chris@email.com,555-3344,2024-05-30,Monitor,2.0,350.0,700.0,Completed,NORTH,0.15,vip
+1029,Dorothy Scott,dscott@email.com,555-5566,2024-06-01,Webcam,5.0,89.99,449.95,Pending,SOUTH,0.0,
