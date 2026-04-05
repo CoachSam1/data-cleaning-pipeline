@@ -1,113 +1,157 @@
-# Professional Data Cleaning Pipeline
+# ==========================================
+# PROFESSIONAL DATA CLEANING PIPELINE (FIXED)
+# ==========================================
 
-```python
 import pandas as pd
-import argparse
-import logging
-import os
+import numpy as np
+from google.colab import files
 
-logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
+print("🚀 Starting Professional Data Pipeline...")
 
-def load_data(path):
-    """Load CSV file into a DataFrame."""
-    return pd.read_csv(path)
+# ------------------------------------------
+# STEP 1: UPLOAD FILE
+# ------------------------------------------
+uploaded = files.upload()
 
-def clean_columns(df):
-    """Standardize column names."""
-    df.columns = df.columns.str.strip().str.lower()
-    logging.info("✅ Columns cleaned")
-    return df
+if not uploaded:
+    raise Exception("❌ No file uploaded")
 
-def remove_duplicates(df):
-    """Drop duplicate rows."""
-    before = len(df)
-    df = df.drop_duplicates()
-    logging.info(f"✅ Removed {before - len(df)} duplicates")
-    return df
+filename = list(uploaded.keys())[0]
+print(f"✅ File uploaded: {filename}")
 
+# ------------------------------------------
+# STEP 2: LOAD DATA
+# ------------------------------------------
+df = pd.read_csv(filename)
+print("✅ Data loaded successfully")
+
+# ------------------------------------------
+# STEP 3: CLEAN COLUMN NAMES (FIXED)
+# ------------------------------------------
+df.columns = df.columns.str.strip().str.lower()
+
+print("✅ Columns cleaned:")
+print(df.columns.tolist())
+
+# ------------------------------------------
+# STEP 4: REMOVE DUPLICATES
+# ------------------------------------------
+df = df.drop_duplicates()
+print("✅ Duplicates removed")
+
+# ------------------------------------------
+# STEP 5: CLEAN NUMERIC DATA
+# ------------------------------------------
 def clean_numeric(series):
-    """Remove non-numeric characters and convert to float."""
-    return pd.to_numeric(series.astype(str).str.replace(r'[^0-9.]', '', regex=True), errors="coerce")
+    return pd.to_numeric(
+        series.astype(str).str.replace(r'[^0-9.]', '', regex=True),
+        errors='coerce'
+    )
 
-def handle_missing(df):
-    """Fill or drop missing values in key columns."""
-    if "quantity" in df: df["quantity"] = df["quantity"].fillna(1)
-    if "discount" in df: df["discount"] = df["discount"].fillna(0)
-    if "unit_price" in df: df = df.dropna(subset=["unit_price"])
-    logging.info("✅ Missing values handled")
-    return df
+df['quantity'] = clean_numeric(df['quantity'])
+df['unit_price'] = clean_numeric(df['unit_price'])
+df['discount'] = clean_numeric(df['discount'])
 
-def fix_total(df):
-    """Recalculate totals and filter invalid rows."""
-    if {"quantity", "unit_price"} <= set(df.columns):
-        df["total"] = df["quantity"] * df["unit_price"]
-        df = df[(df["total"] > 0) & (df["quantity"] > 0)]
-        logging.info("✅ Total fixed")
-    return df
+print("✅ Numeric columns cleaned")
 
-def clean_text(df):
-    """Format text fields consistently."""
-    if "customer name" in df: df["customer name"] = df["customer name"].astype(str).str.strip().str.title()
-    if "email" in df: df["email"] = df["email"].astype(str).str.strip().str.lower()
-    if "product" in df: df["product"] = df["product"].astype(str).str.strip().str.title()
-    if "region" in df: df["region"] = df["region"].astype(str).str.strip().str.upper()
-    if "status" in df:
-        status_map = {"completed":"Completed","shipped":"Shipped","pending":"Pending","cancelled":"Cancelled"}
-        df["status"] = df["status"].astype(str).str.strip().str.lower().map(status_map)
-        df = df.dropna(subset=["status"])
-    logging.info("✅ Text cleaned")
-    return df
+# ------------------------------------------
+# STEP 6: HANDLE MISSING VALUES
+# ------------------------------------------
+df['quantity'] = df['quantity'].fillna(1)
+df['discount'] = df['discount'].fillna(0)
 
-def clean_dates(df):
-    """Convert order date to datetime."""
-    if "order date" in df:
-        df["order date"] = pd.to_datetime(df["order date"], errors="coerce")
-        df = df.dropna(subset=["order date"])
-        logging.info("✅ Dates cleaned")
-    return df
+df = df.dropna(subset=['unit_price'])
 
-def polish(df):
-    """Final polish: fill text fields, reset index."""
-    if "customer name" in df: df["customer name"] = df["customer name"].fillna("Unknown")
-    if "phone number" in df: df["phone number"] = df["phone number"].fillna("Not Provided")
-    df = df.reset_index(drop=True)
-    logging.info("✅ Final polish done")
-    return df
+print("✅ Missing values handled")
 
-def validate(df):
-    """Basic validation checks."""
-    logging.info(f"Shape: {df.shape}")
-    logging.info(f"Missing values:\n{df.isnull().sum()}")
-    if "status" in df: logging.info(f"Statuses: {df['status'].unique()}")
-    if "region" in df: logging.info(f"Regions: {df['region'].unique()}")
-    if {"quantity","unit_price","total"} <= set(df.columns):
-        check = (df["total"] - df["quantity"]*df["unit_price"]).abs().sum()
-        logging.info(f"Logic check (should be 0): {check}")
+# ------------------------------------------
+# STEP 7: FIX TOTAL
+# ------------------------------------------
+df['total'] = df['quantity'] * df['unit_price']
 
-def save(df, path):
-    """Save cleaned data to CSV."""
-    os.makedirs(os.path.dirname(path), exist_ok=True)
-    df.to_csv(path, index=False, encoding="utf-8-sig")
-    logging.info(f"✅ File saved: {path}")
+df = df[df['total'] > 0]
+df = df[df['quantity'] > 0]
 
-def run_pipeline(input_file, output_file):
-    df = load_data(input_file)
-    df = clean_columns(df)
-    df = remove_duplicates(df)
-    if "quantity" in df: df["quantity"] = clean_numeric(df["quantity"])
-    if "unit_price" in df: df["unit_price"] = clean_numeric(df["unit_price"])
-    if "discount" in df: df["discount"] = clean_numeric(df["discount"])
-    df = handle_missing(df)
-    df = fix_total(df)
-    df = clean_text(df)
-    df = clean_dates(df)
-    df = polish(df)
-    validate(df)
-    save(df, output_file)
+print("✅ Total fixed")
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Data Cleaning Pipeline")
-    parser.add_argument("--input", required=True, help="Path to input CSV")
-    parser.add_argument("--output", required=True, help="Path to output CSV")
-    args = parser.parse_args()
-    run_pipeline(args.input, args.output)
+# ------------------------------------------
+# STEP 8: CLEAN TEXT
+# ------------------------------------------
+def clean_text(series):
+    return series.astype(str).str.strip()
+
+df['customer name'] = clean_text(df['customer name']).str.title()
+df['email'] = clean_text(df['email']).str.lower()
+df['product'] = clean_text(df['product']).str.title()
+df['region'] = clean_text(df['region']).str.upper()
+
+df['status'] = clean_text(df['status']).str.lower()
+
+status_map = {
+    'completed': 'Completed',
+    'shipped': 'Shipped',
+    'pending': 'Pending',
+    'cancelled': 'Cancelled'
+}
+
+df['status'] = df['status'].map(status_map)
+
+df = df.dropna(subset=['status'])
+
+print("✅ Text cleaned")
+
+# ------------------------------------------
+# STEP 9: CLEAN DATES
+# ------------------------------------------
+df['order date'] = pd.to_datetime(df['order date'], errors='coerce')
+
+df = df.dropna(subset=['order date'])
+
+print("✅ Dates cleaned")
+
+# ------------------------------------------
+# STEP 10: FINAL POLISH
+# ------------------------------------------
+df['customer name'] = df['customer name'].fillna('Unknown')
+df['phone number'] = df['phone number'].fillna('Not Provided')
+
+df = df.reset_index(drop=True)
+
+print("✅ Final polish done")
+
+# ------------------------------------------
+# STEP 11: VALIDATION
+# ------------------------------------------
+print("\n🔍 VALIDATION")
+
+print("Shape:", df.shape)
+print("\nMissing values:\n", df.isnull().sum())
+print("\nStatus:", df['status'].unique())
+print("\nRegion:", df['region'].unique())
+
+# Logic check
+check = (df['total'] - (df['quantity'] * df['unit_price'])).abs().sum()
+print("\nLogic check (should be 0):", check)
+
+# ------------------------------------------
+# STEP 12: SAVE FILE (GOOGLE SHEETS SAFE)
+# ------------------------------------------
+output_file = "cleaned_sales_final.csv"
+
+df.to_csv(output_file, index=False, encoding='utf-8-sig')
+
+print("\n✅ File saved correctly")
+
+# ------------------------------------------
+# STEP 13: VERIFY FILE
+# ------------------------------------------
+test = pd.read_csv(output_file)
+print("\n✅ Verification preview:")
+print(test.head())
+
+# ------------------------------------------
+# STEP 14: DOWNLOAD
+# ------------------------------------------
+files.download(output_file)
+
+print("\n🎉 DONE! Open file in Google Sheets")
