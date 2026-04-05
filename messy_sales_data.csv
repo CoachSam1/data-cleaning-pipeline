@@ -1,0 +1,31 @@
+Order_ID,customer name,EMAIL,Phone Number,order date,  Product ,QUANTITY,unit_price,Total,Status,   Region,discount,notes
+1001,John Smith,john.smith@email.com,555-1234,2024-01-15,Laptop,2,999.99,1999.98,Completed,North,0.1,VIP customer
+1002,jane doe,JANE.DOE@EMAIL.COM,(555) 5678,01/20/2024,Mouse,,25.00,,shipped,south,,
+1003,BOB JOHNSON,bob@email.com,5559012,2024-1-25,Keyboard,1,75.50,75.50,COMPLETED,East,0,
+1004,Alice Brown,alice.brown@email,555-3456,2024-02-01,Monitor,3,350.00,1050.00,Pending,West,0.15,bulk order
+1005,Charlie Wilson,charlie@email.com,555-7890,Feb 3 2024,Laptop,1,999.99,999.99,completed,NORTH,0.1,
+1006,,mark@email.com,555-2345,2024-02-10,Mouse,5,25.00,125.00,Cancelled,East,,returned
+1007,Sarah Davis,sarah.davis@email.com,,2024-02-14,Keyboard,2,75.50,151,Completed,South,0,
+1008,Tom Martinez,tom@email.com,555-6789,2024/02/20,Monitor,1,350.00,350.00,Shipped,West,0.05,
+1009,Emily Clark,emily@email.com,5554321,2024-03-01,Webcam,3,89.99,269.97,completed,North,,
+1010,david lee,david.lee@email.com,555-8765,03-05-2024,Laptop,N/A,999.99,,Pending,East,0.2,new customer discount
+1011,Nancy White,nancy@email.com,(555) 9999,2024-03-10,Mouse,10,25,250,SHIPPED,south,0,wholesale
+1012,James Harris,jharris@email.com,555-1111,2024-03-15,Keyboard,1,75.50,75.50,Completed,West,,
+1013,Patricia Thompson,pthompson@email,555-2222,2024-03-20,Monitor,2,350.00,700.00,completed,EAST,0.1,
+1014,Robert Garcia,rgarcia@email.com,+1-555-3333,2024-03-25,Webcam,1,89.99,89.99,Cancelled,North,0,damaged
+1015,Linda Martinez,linda@email.com,5554444,2024-04-01,Laptop,2,999.99,1999.98,Completed,South,0.1,
+1016,Michael Robinson,mrobinson@email.com,555-5555,April 5 2024,Mouse,3,25.00,75.00,Pending,West,,
+1017,Barbara Clark,bclark@email.com,555-6666,2024-04-10,Keyboard,4,75.50,302.00,Shipped,East,0,
+1018,william Rodriguez,will@email.com,555-7777,2024/04/15,Monitor,,350.00,,completed,North,0.05,
+1019,Elizabeth Lewis,elewis@email.com,555-8888,2024-04-20,Webcam,2,89.99,179.98,COMPLETED,south,,
+1020,Richard Walker,rwalker@email.com,555-9999,2024-04-25,Laptop,1,999.99,999.99,Completed,WEST,0.1,
+1021,Susan Hall,susan@email.com,,04/30/2024,Mouse,6,25.00,150.00,Shipped,East,,
+1022,Joseph Allen,joe@email.com,555-1212,2024-05-01,Keyboard,2,75.50,151.00,Pending,South,0,
+1023,Jessica Young,jyoung@email.com,555-3434,2024-05-05,Monitor,1,350.00,350.00,completed,West,,
+1024,Thomas Hernandez,thomas@email,555-5656,2024-05-10,Webcam,3,89.99,269.97,Completed,North,0.1,
+1025,Karen King,kking@email.com,555-7878,May 15 2024,Laptop,1,999,999.00,SHIPPED,SOUTH,0,
+1026,Charles Wright,cwright@email.com,(555) 9090,2024-05-20,Mouse,4,25.00,100,Completed,East,0.05,
+1027,Margaret Lopez,mlopez@email.com,5551122,2024-05-25,Keyboard,1,75.50,75.50,Cancelled,West,,damaged in transit
+1028,Christopher Hill,chris@email.com,555-3344,2024-05-30,Monitor,2,350.00,700.00,completed,NORTH,0.15,vip
+1029,Dorothy Scott,dscott@email.com,555-5566,2024-06-01,Webcam,5,89.99,449.95,Pending,South,,
+1030,Daniel Green,dgreen@email.com,555-7788,06/05/2024,Laptop,3,999.99,2999.97,Shipped,East,0.1,
